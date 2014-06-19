@@ -10,7 +10,7 @@ Force activation of provided plugins, also preventing their deactivation
 
 ## Description ##
 
-Not every plugin work in the mu-plugins folder. This plugin can circumvent that issue by forcing the activation of certain plugins in the plugins directory.
+Not every plugin works in the mu-plugins folder. This plugin can circumvent that issue by forcing the activation of certain plugins in the plugins directory.
 
 This plugin must be loaded in the mu-plugins directory. Once it is loaded, one can implement a filter to force network activate a plugin network wise.
 
