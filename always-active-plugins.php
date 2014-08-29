@@ -10,13 +10,13 @@ class Always_Active_Plugins {
 	/**
 	 * @action muplugins_loaded
 	 */
-	static function setup() {
+	public static function setup() {
 		self::activate_plugins();
 		add_filter( 'plugin_action_links', array( __CLASS__, 'filter_plugin_action_links_to_disable_blog_deactivation' ), 10, 4 );
 		add_filter( 'network_admin_plugin_action_links', array( __CLASS__, 'filter_plugin_action_links_to_disable_network_deactivation' ), 10, 4 );
 	}
 
-	static function activate_plugins() {
+	public static function activate_plugins() {
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 		$required_plugins = apply_filters( 'auto_activated_required_plugins', array() );
@@ -35,7 +35,7 @@ class Always_Active_Plugins {
 	/**
 	 * @action plugin_action_links
 	 */
-	static function filter_plugin_action_links_to_disable_blog_deactivation( $actions, $plugin_file, $plugin_data, $context ) {
+	public static function filter_plugin_action_links_to_disable_blog_deactivation( $actions, $plugin_file, $plugin_data, $context ) {
 		$plugins = apply_filters( 'auto_activated_required_plugins', array() );
 
 		if ( in_array( $plugin_file, $plugins ) ) {
@@ -46,7 +46,7 @@ class Always_Active_Plugins {
 		return $actions;
 	}
 
-	static function filter_plugin_action_links_to_disable_network_deactivation( $actions, $plugin_file, $plugin_data, $context ) {
+	public static function filter_plugin_action_links_to_disable_network_deactivation( $actions, $plugin_file, $plugin_data, $context ) {
 		$plugins = apply_filters( 'auto_activated_network_required_plugins', array() );
 		
 		if ( in_array( $plugin_file, $plugins ) ) {
