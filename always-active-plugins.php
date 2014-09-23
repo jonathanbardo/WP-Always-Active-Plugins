@@ -26,11 +26,10 @@ class Always_Active_Plugins {
 		foreach ( $required_plugins as $plugin ) {
 			$is_network = is_network_only_plugin( $plugin ) || in_array( $plugin, $network_required_plugins );
 			$result     = null;
-			if ( $is_network && ! is_plugin_active_for_network( $plugin ) ) {
-
-			} else if ( ! is_plugin_active( $plugin ) ) {
+			if ( $is_network && ! is_plugin_active_for_network( $plugin ) || ! $is_network && ! is_plugin_active( $plugin ) ) {
 				$result = activate_plugin( $plugin, '', $is_network );
 			}
+
 			if ( is_wp_error( $result ) ) {
 				wp_die( sprintf( __( '%1$s: %2$s' ), $plugin, $result->get_error_message() ) );
 			}
